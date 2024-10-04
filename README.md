@@ -1,14 +1,7 @@
-Latest runs:
+Latest runs on my laptop:
 
 ```console
 $ MIX_ENV=bench mix run bench/bind_all.exs
-Operating System: macOS
-CPU Information: Apple M2
-Number of Available Cores: 8
-Available memory: 8 GB
-Elixir 1.17.1
-Erlang 27.0
-JIT enabled: true
 
 Name              ips        average  deviation         median         99th %
 xqlite         9.00 M       0.111 μs ±28533.35%      0.0830 μs       0.125 μs
@@ -21,13 +14,6 @@ exqlite        0.86 M - 10.50x slower +1.05 μs
 
 ```console
 $ MIX_ENV=bench mix run bench/fetch_all.exs
-Operating System: macOS
-CPU Information: Apple M2
-Number of Available Cores: 8
-Available memory: 8 GB
-Elixir 1.17.1
-Erlang 27.0
-JIT enabled: true
 
 ##### With input 10 rows #####
 Name              ips        average  deviation         median         99th %
@@ -68,13 +54,6 @@ exqlite        140.09 - 3.06x slower +4.81 ms
 
 ```console
 $ MIX_ENV=bench mix run bench/insert_all.exs
-Operating System: macOS
-CPU Information: Apple M2
-Number of Available Cores: 8
-Available memory: 8 GB
-Elixir 1.17.1
-Erlang 27.0
-JIT enabled: true
 
 ##### With input 1 row #####
 Name              ips        average  deviation         median         99th %
