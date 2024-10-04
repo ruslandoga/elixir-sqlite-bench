@@ -7,8 +7,9 @@ defmodule Bench do
 
   defp xqlite_bind_all([param | params], idx, db, stmt) do
     case param do
-      num when is_number(num) -> XQLite.bind_number(db, stmt, idx, num)
-      txt when is_binary(txt) -> XQLite.bind_text(db, stmt, idx, txt)
+      i when is_integer(i) -> XQLite.bind_integer(db, stmt, idx, i)
+      f when is_float(f) -> XQLite.bind_float(db, stmt, idx, f)
+      t when is_binary(t) -> XQLite.bind_text(db, stmt, idx, t)
       nil -> XQLite.bind_null(db, stmt, idx)
     end
 

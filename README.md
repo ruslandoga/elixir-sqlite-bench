@@ -25,12 +25,12 @@ Calculating statistics...
 Formatting results...
 
 Name              ips        average  deviation         median         99th %
-xqlite         7.02 M       0.142 μs  ±4485.44%       0.125 μs       0.167 μs
-exqlite        0.84 M        1.18 μs   ±708.03%        1.17 μs        1.29 μs
+xqlite         9.00 M       0.111 μs ±28533.35%      0.0830 μs       0.125 μs
+exqlite        0.86 M        1.17 μs   ±766.35%        1.13 μs        1.38 μs
 
 Comparison:
-xqlite         7.02 M
-exqlite        0.84 M - 8.31x slower +1.04 μs
+xqlite         9.00 M
+exqlite        0.86 M - 10.50x slower +1.05 μs
 ```
 
 ```console
@@ -65,39 +65,39 @@ Formatting results...
 
 ##### With input 10 rows #####
 Name              ips        average  deviation         median         99th %
-xqlite       253.70 K        3.94 μs   ±169.07%        3.88 μs        5.33 μs
-exqlite      166.76 K        6.00 μs   ±101.37%        5.75 μs        8.46 μs
+xqlite       229.59 K        4.36 μs   ±161.01%        4.25 μs        5.96 μs
+exqlite      134.31 K        7.45 μs   ±167.30%        6.58 μs       22.96 μs
 
 Comparison:
-xqlite       253.70 K
-exqlite      166.76 K - 1.52x slower +2.06 μs
+xqlite       229.59 K
+exqlite      134.31 K - 1.71x slower +3.09 μs
 
 ##### With input 100 rows #####
 Name              ips        average  deviation         median         99th %
-xqlite        36.10 K       27.70 μs    ±16.05%          28 μs       37.38 μs
-exqlite       17.87 K       55.97 μs    ±32.22%       49.75 μs      128.92 μs
+xqlite        28.56 K       35.01 μs    ±10.36%       34.67 μs       45.96 μs
+exqlite       11.74 K       85.20 μs    ±26.00%       74.63 μs      148.74 μs
 
 Comparison:
-xqlite        36.10 K
-exqlite       17.87 K - 2.02x slower +28.27 μs
+xqlite        28.56 K
+exqlite       11.74 K - 2.43x slower +50.19 μs
 
 ##### With input 1000 rows #####
 Name              ips        average  deviation         median         99th %
-xqlite         4.86 K      205.95 μs     ±5.26%      205.21 μs      236.71 μs
-exqlite        1.97 K      507.82 μs    ±13.70%      525.29 μs      615.26 μs
+xqlite         4.00 K      249.89 μs     ±7.24%      245.83 μs      295.31 μs
+exqlite        1.25 K      802.02 μs    ±16.42%      870.83 μs      969.03 μs
 
 Comparison:
-xqlite         4.86 K
-exqlite        1.97 K - 2.47x slower +301.87 μs
+xqlite         4.00 K
+exqlite        1.25 K - 3.21x slower +552.13 μs
 
 ##### With input 10000 rows #####
 Name              ips        average  deviation         median         99th %
-xqlite         519.54        1.92 ms     ±4.63%        1.88 ms        2.18 ms
-exqlite        210.14        4.76 ms     ±8.38%        4.65 ms        5.68 ms
+xqlite         428.95        2.33 ms     ±7.04%        2.23 ms        2.63 ms
+exqlite        140.09        7.14 ms     ±9.71%        7.15 ms        8.50 ms
 
 Comparison:
-xqlite         519.54
-exqlite        210.14 - 2.47x slower +2.83 ms
+xqlite         428.95
+exqlite        140.09 - 3.06x slower +4.81 ms
 ```
 
 `insert_all` [benchmark](https://github.com/ruslandoga/xqlite/blob/master/bench/insert_all.exs) is unfair to Exqlite since XQLite uses a different approach so it's omitted.

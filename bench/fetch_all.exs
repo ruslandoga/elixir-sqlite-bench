@@ -1,10 +1,16 @@
 sql = """
 with recursive cte(i) as (
-  select 1
+  values(1)
   union all
   select i + 1 from cte where i < ?
 )
-select i, 'hello' || i, null from cte
+select
+  i as integer,
+  i / 1.0 as float,
+  'hello' || i as text,
+  x'534F53' as blob,
+  null
+from cte
 """
 
 Benchee.run(
@@ -14,7 +20,7 @@ Benchee.run(
        before_scenario: fn rows ->
          db = XQLite.open(":memory:", [:readonly, :nomutex])
          stmt = XQLite.prepare(db, sql, [:persistent])
-         XQLite.bind_number(db, stmt, 1, rows)
+         XQLite.bind_integer(db, stmt, 1, rows)
          %{db: db, stmt: stmt}
        end,
        after_scenario: fn %{db: db, stmt: stmt} ->
