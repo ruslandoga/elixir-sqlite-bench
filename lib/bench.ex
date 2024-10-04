@@ -29,4 +29,18 @@ defmodule Bench do
   def exqlite_fetch_all(%{db: db, stmt: stmt}) do
     Exqlite.Sqlite3.fetch_all(db, stmt)
   end
+
+  def xqlite_insert_all(%{db: db, rows: rows, insert: insert, begin: begin, commit: commit}) do
+    XQLite.step(db, begin)
+    XQLite.insert_all(db, insert, [:integer, :float, :text, :blob, :text], rows)
+    XQLite.step(db, commit)
+  end
+
+  def exqlite_insert_all(%{db: db, sql: sql, rows: rows}) do
+    full_sql = [sql, "(?, ?, ?, ?, ?)" | List.duplicate(", (?, ?, ?, ?, ?)", length(rows) - 1)]
+    {:ok, stmt} = Exqlite.Sqlite3.prepare(db, full_sql)
+    :ok = Exqlite.Sqlite3.bind(db, stmt, List.flatten(rows))
+    :done = Exqlite.Sqlite3.step(db, stmt)
+    :ok = Exqlite.Sqlite3.release(db, stmt)
+  end
 end

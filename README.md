@@ -10,20 +10,6 @@ Elixir 1.17.1
 Erlang 27.0
 JIT enabled: true
 
-Benchmark suite executing with the following configuration:
-warmup: 2 s
-time: 3 s
-memory time: 0 ns
-reduction time: 0 ns
-parallel: 1
-inputs: none specified
-Estimated total run time: 10 s
-
-Benchmarking exqlite ...
-Benchmarking xqlite ...
-Calculating statistics...
-Formatting results...
-
 Name              ips        average  deviation         median         99th %
 xqlite         9.00 M       0.111 μs ±28533.35%      0.0830 μs       0.125 μs
 exqlite        0.86 M        1.17 μs   ±766.35%        1.13 μs        1.38 μs
@@ -42,26 +28,6 @@ Available memory: 8 GB
 Elixir 1.17.1
 Erlang 27.0
 JIT enabled: true
-
-Benchmark suite executing with the following configuration:
-warmup: 2 s
-time: 5 s
-memory time: 0 ns
-reduction time: 0 ns
-parallel: 1
-inputs: 10 rows, 100 rows, 1000 rows, 10000 rows
-Estimated total run time: 56 s
-
-Benchmarking exqlite with input 10 rows ...
-Benchmarking exqlite with input 100 rows ...
-Benchmarking exqlite with input 1000 rows ...
-Benchmarking exqlite with input 10000 rows ...
-Benchmarking xqlite with input 10 rows ...
-Benchmarking xqlite with input 100 rows ...
-Benchmarking xqlite with input 1000 rows ...
-Benchmarking xqlite with input 10000 rows ...
-Calculating statistics...
-Formatting results...
 
 ##### With input 10 rows #####
 Name              ips        average  deviation         median         99th %
@@ -100,4 +66,49 @@ xqlite         428.95
 exqlite        140.09 - 3.06x slower +4.81 ms
 ```
 
-`insert_all` [benchmark](https://github.com/ruslandoga/xqlite/blob/master/bench/insert_all.exs) is unfair to Exqlite since XQLite uses a different approach so it's omitted.
+```console
+$ MIX_ENV=bench mix run bench/insert_all.exs
+Operating System: macOS
+CPU Information: Apple M2
+Number of Available Cores: 8
+Available memory: 8 GB
+Elixir 1.17.1
+Erlang 27.0
+JIT enabled: true
+
+##### With input 1 row #####
+Name              ips        average  deviation         median         99th %
+xqlite       242.33 K        4.13 μs    ±50.77%        4.04 μs        5.42 μs
+exqlite      154.18 K        6.49 μs    ±66.23%        6.21 μs       11.29 μs
+
+Comparison:
+xqlite       242.33 K
+exqlite      154.18 K - 1.57x slower +2.36 μs
+
+##### With input 10 rows #####
+Name              ips        average  deviation         median         99th %
+xqlite       142.92 K        7.00 μs    ±53.32%        6.58 μs       17.92 μs
+exqlite       80.40 K       12.44 μs    ±40.34%       11.54 μs          29 μs
+
+Comparison:
+xqlite       142.92 K
+exqlite       80.40 K - 1.78x slower +5.44 μs
+
+##### With input 100 rows #####
+Name              ips        average  deviation         median         99th %
+xqlite        21.44 K       46.65 μs    ±13.97%       45.50 μs       71.16 μs
+exqlite       11.65 K       85.84 μs    ±13.21%       84.58 μs      117.83 μs
+
+Comparison:
+xqlite        21.44 K
+exqlite       11.65 K - 1.84x slower +39.20 μs
+
+##### With input 1000 rows #####
+Name              ips        average  deviation         median         99th %
+xqlite         3.40 K      294.37 μs     ±3.89%      291.58 μs      327.92 μs
+exqlite        1.33 K      749.33 μs     ±2.29%      746.25 μs      790.57 μs
+
+Comparison:
+xqlite         3.40 K
+exqlite        1.33 K - 2.55x slower +454.97 μs
+```
