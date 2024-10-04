@@ -100,4 +100,4 @@ xqlite         519.54
 exqlite        210.14 - 2.47x slower +2.83 ms
 ```
 
-`insert_all` benchmark is unfair to Exqlite since XQLite uses a different approach so it's omitted.
+`insert_all` [benchmark](https://github.com/ruslandoga/xqlite/blob/master/bench/insert_all.exs) is unfair to Exqlite since XQLite uses a different approach so it's omitted.
