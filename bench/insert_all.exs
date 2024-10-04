@@ -13,7 +13,7 @@ rows = fn count ->
   |> Enum.take(count)
 end
 
-# xqlite reuses the same prepared statement for each rows
+# xqlite reuses the same prepared statement for each row
 # insert into test(i, f, t, b, n) values (?, ?, ?, ?, ?)
 # exqlite prepares a new statement for each collection of rows to insert them all at once
 # insert into test(i, f, t, b, n) values (?, ?, ?, ?, ?), (?, ?, ?, ?, ?), ...
