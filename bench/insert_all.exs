@@ -29,13 +29,7 @@ Benchee.run(
          insert = XQLite.prepare(db, insert, [:persistent])
          begin = XQLite.prepare(db, "begin immediate", [:persistent])
          commit = XQLite.prepare(db, "commit", [:persistent])
-         %{db: db, rows: rows, insert: insert, begin: begin, commit: commit}
-       end,
-       after_scenario: fn %{db: db, insert: insert, begin: begin, commit: commit} ->
-         XQLite.finalize(insert)
-         XQLite.finalize(begin)
-         XQLite.finalize(commit)
-         XQLite.close(db)
+         %{rows: rows, insert: insert, begin: begin, commit: commit}
        end},
     "exqlite" =>
       {&Bench.exqlite_insert_all/1,
@@ -50,9 +44,6 @@ Benchee.run(
            end)
 
          %{db: db, sql: "insert into test(i, f, t, b, n) values ", rows: rows}
-       end,
-       after_scenario: fn %{db: db} ->
-         :ok = Exqlite.Sqlite3.close(db)
        end}
   },
   inputs: %{
